@@ -27,6 +27,24 @@ class S6PLL(XilinxClocking):
             -3: (400e6, 1080e6),
         }[speedgrade]
 
+    def register_clkin(self, clkin, freq):
+        self.clkin = Signal()
+        if isinstance(clkin, (Signal, ClockSignal)):
+            self.specials += Instance("IBUFG",
+                i_I=clkin,
+                o_O=self.clkin,
+            )
+        elif isinstance(clkin, Record):
+            self.specials += Instance("IBUFGDS",
+                i_I=clkin.p,
+                i_IB=clkin.n,
+                o_O=self.clkin,
+            )
+        else:
+            raise ValueError
+        self.clkin_freq = freq
+        register_clkin_log(self.logger, clkin, freq)
+
     def do_finalize(self):
         XilinxClocking.do_finalize(self)
         config = self.compute_config()
