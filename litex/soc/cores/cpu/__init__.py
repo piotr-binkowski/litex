@@ -86,6 +86,9 @@ from litex.soc.cores.cpu.blackparrot import BlackParrotRV64
 # Zynq
 from litex.soc.cores.cpu.zynq7000 import Zynq7000
 
+# m68k
+
+from litex.soc.cores.cpu.mc68040 import MC68040
 
 CPUS = {
     # None
@@ -117,4 +120,7 @@ CPUS = {
 
     # Zynq
     "zynq7000"    : Zynq7000,
+
+    # m68k
+    "mc68040"     : MC68040,
 }
