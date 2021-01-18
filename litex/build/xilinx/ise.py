@@ -175,7 +175,7 @@ bitgen {bitgen_opt} {build_name}.ncd {build_name}.bit{fail_stmt}
 
 class XilinxISEToolchain:
     attr_translate = {
-        "keep":             ("keep", "true"),
+        "keep":             ("keep", "soft"),
         "no_retiming":      ("register_balancing", "no"),
         "async_reg":        None,
         "mr_ff":            None,
